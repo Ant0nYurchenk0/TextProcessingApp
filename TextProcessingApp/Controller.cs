@@ -9,7 +9,7 @@ namespace TextProcessingApp
             for(int line = 0; line < lineList.Count; line++)
             {
                 lineList[line] = removeChars(lineList[line]);
-                var wordList = lineList[line].Split(' ');
+                var wordList = lineList[line].Split(' ').Where(word => word != string.Empty).ToList();
                 foreach (var word in wordList)
                 {
                     var keyWord = word.ToLower();
