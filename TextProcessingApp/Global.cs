@@ -8,5 +8,6 @@ namespace TextProcessingApp
         internal static string SearchError = "Error: No such word";
         internal static string[] CharsToRemove = { ".", ",", ";", ":", "\'", "\"" };
         internal static string FileFilters = "Text files (*.txt)|*.txt|" + "All files (*.*)|*.*";
+        internal static string DoubleClick = "Double-click a word to copy";
     }
 }

@@ -1,5 +1,4 @@
-﻿
-namespace TextProcessingApp
+﻿namespace TextProcessingApp
 {
     internal static class Controller
     {
@@ -58,6 +57,12 @@ namespace TextProcessingApp
             {
                 throw new Exception(Global.SearchError);
             }
+        }
+        internal static void ResetTable(DataGridView table)
+        {
+            table.Rows.Clear();
+            table.Columns.Clear();
+            table.Refresh();
         }
         private static string removeChars(string line)
         {

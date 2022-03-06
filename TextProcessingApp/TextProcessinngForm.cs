@@ -6,26 +6,19 @@ namespace TextProcessingApp
         {
             InitializeComponent();
             OpenTxtFile.Filter = Global.FileFilters;
+            resetWorkSpace();
         }
 
         private void OpenFileButton_Click(object sender, EventArgs e)
         {
+            resetWorkSpace();
             if (OpenTxtFile.ShowDialog() == DialogResult.OK)
             {
                 Controller.ParseFile(OpenTxtFile.FileName);
-                FilePathLabel.Text = OpenTxtFile.FileName;
                 Controller.ShowDictionary(DictionaryTable);
+                FilePathLabel.Text = OpenTxtFile.FileName;
                 SearchButton.Enabled = true;
                 SearchTextBox.Enabled = true;
-            }
-            else
-            {
-                SearchTextBox.Text = string.Empty;
-                SearchButton.Enabled = false;
-                SearchTextBox.Enabled = false;
-                DictionaryTable.Rows.Clear();
-                DictionaryTable.Columns.Clear();
-                DictionaryTable.Refresh();
             }
         }
 
@@ -40,14 +33,23 @@ namespace TextProcessingApp
             }
             catch (Exception ex)
             {
-                SearchTextBox.ForeColor = Color.Red;
                 SearchTextBox.Text = ex.Message;
-                SearchTextBox.ForeColor = Color.Black;
             }
         }
         private void DictionaryTable_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             SearchTextBox.Text = DictionaryTable.CurrentCell.Value.ToString();
+        }
+        private void resetWorkSpace()
+        {
+            SearchTextBox.Text = string.Empty;
+            FilePathLabel.Text = string.Empty;
+            SearchButton.Enabled = false;
+            SearchTextBox.Enabled = false;
+            SearchTextBox.Text = Global.DoubleClick;
+            Controller.ResetTable(DictionaryTable);
+            Controller.ResetTable(RepetitionsTable);
+            Global.WordDictionary.Clear();
         }
     }
 }

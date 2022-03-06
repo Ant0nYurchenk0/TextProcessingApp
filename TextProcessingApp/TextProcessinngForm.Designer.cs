@@ -85,17 +85,19 @@
             // SearchTextBox
             // 
             this.SearchTextBox.Enabled = false;
+            this.SearchTextBox.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.SearchTextBox.Location = new System.Drawing.Point(549, 67);
             this.SearchTextBox.Name = "SearchTextBox";
-            this.SearchTextBox.Size = new System.Drawing.Size(191, 31);
+            this.SearchTextBox.Size = new System.Drawing.Size(223, 31);
             this.SearchTextBox.TabIndex = 4;
+            this.SearchTextBox.Text = "Double-click word to copy";
             // 
             // SearchButton
             // 
             this.SearchButton.Enabled = false;
-            this.SearchButton.Location = new System.Drawing.Point(746, 65);
+            this.SearchButton.Location = new System.Drawing.Point(778, 65);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(112, 34);
+            this.SearchButton.Size = new System.Drawing.Size(80, 34);
             this.SearchButton.TabIndex = 5;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
