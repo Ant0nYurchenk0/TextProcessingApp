@@ -3,7 +3,7 @@ namespace TextProcessingApp
 {
     internal class Position
     {
-        public int Character { get => character; }
+        public int Word { get => character; }
         public int Line { get => line; }
 
         private int line;

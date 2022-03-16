@@ -9,22 +9,21 @@
             {
                 lineList[line] = removeChars(lineList[line]);
                 var wordList = lineList[line].Split(' ').Where(word => word != string.Empty).ToList();
-                foreach (var word in wordList)
+                for(int word = 0; word < wordList.Count; word++)
                 {
-                    var keyWord = word.ToLower();
+                    var keyWord = wordList[word].ToLower();
                     if (Global.WordDictionary.TryGetValue(keyWord, out var positionList))
                     {
-                        positionList.Add(new Position(line+1, lineList[line].IndexOf(word)+1));
+                        positionList.Add(new Position(line+1, word+1));
                     }
                     else
                     {
                         Global.WordDictionary.Add(keyWord, new List<Position>());
-                        Global.WordDictionary[keyWord].Add(new Position(line + 1, lineList[line].IndexOf(word) + 1));
+                        Global.WordDictionary[keyWord].Add(new Position(line + 1, word + 1));
                     }
                 }
             }
             Global.WordDictionary = Global.WordDictionary.OrderByDescending(word => word.Value.Count).ToDictionary(word => word.Key, word => word.Value);
-
         }
 
         internal static void ShowDictionary(DataGridView dictionaryTable)
@@ -45,12 +44,12 @@
             if (Global.WordDictionary.TryGetValue(word, out var positionList))
             {
                 repetitionsTable.Columns.Add(new DataGridViewTextBoxColumn{Name = "Line"});
-                repetitionsTable.Columns.Add(new DataGridViewTextBoxColumn{Name = "Character"});
+                repetitionsTable.Columns.Add(new DataGridViewTextBoxColumn{Name = "Word No."});
                 foreach (var position in positionList)
                 {
                     repetitionsTable.Rows.Add(new DataGridViewRow());
                     repetitionsTable.Rows[repetitionsTable.RowCount - 1].Cells[0].Value = position.Line.ToString();
-                    repetitionsTable.Rows[repetitionsTable.RowCount - 1].Cells[1].Value = position.Character.ToString();
+                    repetitionsTable.Rows[repetitionsTable.RowCount - 1].Cells[1].Value = position.Word.ToString();
                 }
             }
             else
