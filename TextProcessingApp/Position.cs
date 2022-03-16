@@ -1,7 +1,7 @@
 ﻿
 namespace TextProcessingApp
 {
-    internal class Position
+    internal struct Position
     {
         public int Word { get => character; }
         public int Line { get => line; }
